@@ -34,6 +34,7 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:us-east-2:*:*arn:aws:dynamodb:us-east-2:*:table/notes"
 
+
   
   
 functions:
@@ -86,3 +87,5 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
+resources:
+  - ${file(resources/api-gateway-errors.yml)}
