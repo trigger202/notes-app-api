@@ -8,14 +8,15 @@ export async function main(event, context) {
         TableName: process.env.tableName,
         Key: {
             userId: event.requestContext.identity.cognitoIdentityId,
-            noteId: event.pathParamaters.id
+            noteId: event.pathParameters.id
         }
     };
 
     try {
         const result = await dynamoDbLib.call("get", params);
         if (result) {
-            return success(result.Item);
+            console.log(result);
+            return success(result.item);
         }
         else {
             return failure({ status: false, error: "Item not found." });
