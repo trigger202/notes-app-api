@@ -1,7 +1,5 @@
 {
-    "pathParameters": {
-        "id": "4a91bca0-5549-11ea-9519-a94c922961b9"
-    },
+    "body": "{\"source\":\"tok_visa\",\"storage\":21}",
     "requestContext": {
         "identity": {
             "cognitoIdentityId": "USER-SUB-1234"
