@@ -3,7 +3,8 @@ import { success, failure } from "./libs/response-lib";
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 
 export async function main(event, context, callback) {
-    const data = JSON.parse(event.body);
+    console.log('event', event.body);
+    const data = event.body;
     const params = {
         TableName: process.env.tableName,
         Item: {
@@ -14,7 +15,8 @@ export async function main(event, context, callback) {
             createdAt: Date.now()
         }
     };
-
+    console.log("about to create a resource");
+    console.log("resouce data", params);
     try {
         await dynamoDbLib.call("put", params);
         return success(params.Item);
@@ -23,5 +25,6 @@ export async function main(event, context, callback) {
         console.log(error);
         return failure({ status: false });
     }
+
 
 }
