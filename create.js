@@ -4,7 +4,14 @@ import * as dynamoDbLib from "./libs/dynamodb-lib";
 
 export async function main(event, context, callback) {
     console.log('event', event.body);
-    const data = event.body;
+    let data = event.body;
+    try {
+        data = JSON.parse(event.body);
+    } catch (e) {
+        console.log("not json ", event.body);
+    }
+
+    console.log("after parsing body ", data);
     const params = {
         TableName: process.env.tableName,
         Item: {
